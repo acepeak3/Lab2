@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EllipticCurves", "EllipticCurves\EllipticCurves.vcxproj", "{06DF824B-55E3-4BC1-AF4A-7CCC6E3EFC31}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LenstraMethod", "LenstraMethod\LenstraMethod.vcxproj", "{0058A671-4761-4E4E-9229-DADF06059570}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModCalculate", "ModCalculate\ModCalculate.vcxproj", "{73675FAE-84BD-4FCF-AF3D-4238FBD3C09F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +25,27 @@ Global
 		{06DF824B-55E3-4BC1-AF4A-7CCC6E3EFC31}.Release|x64.Build.0 = Release|x64
 		{06DF824B-55E3-4BC1-AF4A-7CCC6E3EFC31}.Release|x86.ActiveCfg = Release|Win32
 		{06DF824B-55E3-4BC1-AF4A-7CCC6E3EFC31}.Release|x86.Build.0 = Release|Win32
+		{0058A671-4761-4E4E-9229-DADF06059570}.Debug|x64.ActiveCfg = Debug|x64
+		{0058A671-4761-4E4E-9229-DADF06059570}.Debug|x64.Build.0 = Debug|x64
+		{0058A671-4761-4E4E-9229-DADF06059570}.Debug|x86.ActiveCfg = Debug|Win32
+		{0058A671-4761-4E4E-9229-DADF06059570}.Debug|x86.Build.0 = Debug|Win32
+		{0058A671-4761-4E4E-9229-DADF06059570}.Release|x64.ActiveCfg = Release|x64
+		{0058A671-4761-4E4E-9229-DADF06059570}.Release|x64.Build.0 = Release|x64
+		{0058A671-4761-4E4E-9229-DADF06059570}.Release|x86.ActiveCfg = Release|Win32
+		{0058A671-4761-4E4E-9229-DADF06059570}.Release|x86.Build.0 = Release|Win32
+		{73675FAE-84BD-4FCF-AF3D-4238FBD3C09F}.Debug|x64.ActiveCfg = Debug|x64
+		{73675FAE-84BD-4FCF-AF3D-4238FBD3C09F}.Debug|x64.Build.0 = Debug|x64
+		{73675FAE-84BD-4FCF-AF3D-4238FBD3C09F}.Debug|x86.ActiveCfg = Debug|Win32
+		{73675FAE-84BD-4FCF-AF3D-4238FBD3C09F}.Debug|x86.Build.0 = Debug|Win32
+		{73675FAE-84BD-4FCF-AF3D-4238FBD3C09F}.Release|x64.ActiveCfg = Release|x64
+		{73675FAE-84BD-4FCF-AF3D-4238FBD3C09F}.Release|x64.Build.0 = Release|x64
+		{73675FAE-84BD-4FCF-AF3D-4238FBD3C09F}.Release|x86.ActiveCfg = Release|Win32
+		{73675FAE-84BD-4FCF-AF3D-4238FBD3C09F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F6A25EEE-27A5-4504-8277-2B230A6927BC}
 	EndGlobalSection
 EndGlobal

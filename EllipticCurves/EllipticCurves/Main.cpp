@@ -1,12 +1,15 @@
 ﻿#include <Windows.h>
 #include <string>
 
-#include "Calculate.h"
+#include "../ModCalculate/Calculate.h"
 
 int64_t
 	pointX,
 	pointY,
-	k = 2;
+	k = 2,
+	fieldSize = 289,
+	curveA = 3,
+	curveB = 7;
 
 bool divisorFound = false;
 
@@ -31,7 +34,7 @@ LRESULT CALLBACK WindowProcedure(
 		GetClientRect(aWindow, &clientRect);
 		FillRect(deviceContext, &clientRect, (HBRUSH)GetStockObject(WHITE_BRUSH));
 
-		HPEN pen = CreatePen(PS_SOLID, 1, RGB(113, 210, 200));
+		HPEN pen = CreatePen(PS_SOLID, 1, RGB(113, 210, 200)); 
 
 		SelectObject(deviceContext, pen);
 
@@ -60,9 +63,9 @@ LRESULT CALLBACK WindowProcedure(
 		for (int64_t x = 0; x < fieldSize; x++) 
 			for(int64_t y = 0; y < fieldSize; y++) 
 			{
-				if (onCurve(x, y))
+				if (onCurve(fieldSize, curveA, curveB, x, y))
 				{
-					int64_t paint_y = fieldSize - 1 - y;
+ 					int64_t paint_y = fieldSize - 1 - y;
 					RECT rectangle{ 10 + 3 * x + 1, 10 + 3 * paint_y + 1, 10 + 3 * x + 3, 10 + 3 * paint_y + 3 }; 
 
 					if (!firstPointFound)
@@ -90,7 +93,7 @@ LRESULT CALLBACK WindowProcedure(
 		if (!divisorFound)
 		{
 
-			const int64_t divisor = tryMultiplyPoint(pointX, pointY, k);
+			const int64_t divisor = tryMultiplyPoint(fieldSize, curveA, curveB, pointX, pointY, k);
 			k++;
 
 			if (divisor == 1)
@@ -99,7 +102,7 @@ LRESULT CALLBACK WindowProcedure(
 
 				RECT rectangle{ 10 + 3 * pointX, 10 + 3 * paint_y, 10 + 3 * pointX + 4, 10 + 3 * paint_y + 4 };
 
-				for (int i = 0; i < 2 /*10*/ ; i++)
+				for (int i = 0; i < 2 /*10*/ ; i++) 
 				{
 
 					HDC deviceContext = GetDC(aWindow);
@@ -201,14 +204,14 @@ int WINAPI WinMain(HINSTANCE aInstance, HINSTANCE aPreviousInstance, LPSTR aComm
 	ShowWindow(vMainWindow, aShowCommand);
 	UpdateWindow(vMainWindow);
 
-	SetTimer(vMainWindow, NULL, 10, NULL);
+	SetTimer(vMainWindow, NULL, 100, NULL);
 	
 	MSG vMessage;
 		
-	while (GetMessage(&vMessage, NULL, 0, 0))
+	while (GetMessage(&vMessage, NULL, 0, 0)) 
 	{
 		
-		DispatchMessage(&vMessage); 
+		DispatchMessage(&vMessage);
 		
 	}
 
