@@ -3,15 +3,15 @@
 
 #include "Calculate.h"
 
-uint64_t
+int64_t
 	pointX,
 	pointY,
 	k = 2;
 
 bool divisorFound = false;
 
-LRESULT CALLBACK WindowProcedure(
-	HWND aWindow,
+LRESULT CALLBACK WindowProcedure( 
+	HWND aWindow, 
 	UINT aMessage,
 	WPARAM aWParameter,
 	LPARAM aLParameter)
@@ -31,7 +31,7 @@ LRESULT CALLBACK WindowProcedure(
 		GetClientRect(aWindow, &clientRect);
 		FillRect(deviceContext, &clientRect, (HBRUSH)GetStockObject(WHITE_BRUSH));
 
-		HPEN pen = CreatePen(PS_SOLID, 1, RGB(113, 210, 200)); 
+		HPEN pen = CreatePen(PS_SOLID, 1, RGB(113, 210, 200));
 
 		SelectObject(deviceContext, pen);
 
@@ -57,18 +57,18 @@ LRESULT CALLBACK WindowProcedure(
 			redBrush = CreateSolidBrush(RGB(240, 0, 0)),
 			blackBrush = CreateSolidBrush(RGB(0, 0, 0));
 
-		for (uint64_t x = 0; x < fieldSize; x++) 
-			for(uint64_t y = 0; y < fieldSize; y++) 
+		for (int64_t x = 0; x < fieldSize; x++) 
+			for(int64_t y = 0; y < fieldSize; y++) 
 			{
 				if (onCurve(x, y))
 				{
-					uint64_t paint_y = fieldSize - 1 - y;
+					int64_t paint_y = fieldSize - 1 - y;
 					RECT rectangle{ 10 + 3 * x + 1, 10 + 3 * paint_y + 1, 10 + 3 * x + 3, 10 + 3 * paint_y + 3 }; 
 
 					if (!firstPointFound)
 					{
 						pointX = x;
-						pointY = y;
+						pointY = y; 
 						firstPointFound = true;
 
 						FillRect(deviceContext, &rectangle, blackBrush);
@@ -85,26 +85,26 @@ LRESULT CALLBACK WindowProcedure(
 		
 		EndPaint(aWindow, &paintStructure);
 	}
-	case WM_TIMER: // 
+	case WM_TIMER: 
 	{
 		if (!divisorFound)
 		{
 
-			const uint64_t divisor = tryMultiplyPoint(pointX, pointY, k);
+			const int64_t divisor = tryMultiplyPoint(pointX, pointY, k);
 			k++;
 
 			if (divisor == 1)
 			{
-				uint64_t paint_y = fieldSize - 1 - pointY;
+				int64_t paint_y = fieldSize - 1 - pointY;
 
 				RECT rectangle{ 10 + 3 * pointX, 10 + 3 * paint_y, 10 + 3 * pointX + 4, 10 + 3 * paint_y + 4 };
 
-				for (int i = 0; i < 2 /* 10 */; i++)
+				for (int i = 0; i < 2 /*10*/ ; i++)
 				{
 
 					HDC deviceContext = GetDC(aWindow);
 
-					HBRUSH brush = CreateSolidBrush(RGB(240, 240, 240));
+					HBRUSH brush = CreateSolidBrush(RGB(240, 240, 240)); 
 
 					FillRect(deviceContext, &rectangle, brush);
 
@@ -112,7 +112,7 @@ LRESULT CALLBACK WindowProcedure(
 
 					ReleaseDC(aWindow, deviceContext);
 
-					Sleep(100);
+					Sleep(100); 
 
 					deviceContext = GetDC(aWindow);
 
@@ -133,13 +133,13 @@ LRESULT CALLBACK WindowProcedure(
 
 				if (divisor == 0)
 				{
-					std::string message = "Point at infinity reached! Multiplier: " + std::to_string(k);
+					std::string message = "Point at infinity reached! Multiplier: " + std::to_string(k-1);
 
 					MessageBox(aWindow, message.c_str(), "Divisor not found", MB_ICONINFORMATION);
 				}
 				else
 				{
-					std::string message = "Divisor is " + std::to_string(divisor) + ", multiplier: " + std::to_string(k);
+					std::string message = "Divisor is " + std::to_string(divisor) + ", multiplier: " + std::to_string(k-1);
 
 					MessageBox(aWindow, message.c_str(), "Divisor found", MB_ICONINFORMATION);
 				}
@@ -172,7 +172,7 @@ int WINAPI WinMain(HINSTANCE aInstance, HINSTANCE aPreviousInstance, LPSTR aComm
 	WNDCLASSEX vWindowClass;
 	vWindowClass.cbSize = sizeof(WNDCLASSEX);
 	vWindowClass.style = CS_HREDRAW | CS_VREDRAW;
-	vWindowClass.lpfnWndProc = WindowProcedure;
+	vWindowClass.lpfnWndProc = WindowProcedure; 
 	vWindowClass.cbClsExtra = 0;
 	vWindowClass.cbWndExtra = 0;
 	vWindowClass.hInstance = aInstance;
@@ -201,14 +201,14 @@ int WINAPI WinMain(HINSTANCE aInstance, HINSTANCE aPreviousInstance, LPSTR aComm
 	ShowWindow(vMainWindow, aShowCommand);
 	UpdateWindow(vMainWindow);
 
-	SetTimer(vMainWindow, NULL, 500, NULL);
+	SetTimer(vMainWindow, NULL, 10, NULL);
 	
 	MSG vMessage;
 		
 	while (GetMessage(&vMessage, NULL, 0, 0))
 	{
 		
-		DispatchMessage(&vMessage);
+		DispatchMessage(&vMessage); 
 		
 	}
 
