@@ -10,7 +10,7 @@ int main()
 	int64_t tryMultiplyPoint(int64_t _fieldSize, int64_t _curveA, int64_t _curveB, int64_t &_changedPointX, int64_t &_changedPointY, const int64_t _multiplier);
 
 	int64_t
-		fieldSize = 29 * 10007,
+		fieldSize = 10007ULL * 10007 * 10007,
 		x0 = 13,
 		y0 = 5,
 		pointX = x0,
